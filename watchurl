@@ -1,0 +1,3 @@
+# openstack needs version <0.8
+# once they update requirement, we can push >=0.8 versions
+watchurl=https://pypi.python.org/packages/source/P/PrettyTable/prettytable-(0.7[\d\.]*).tar.gz
