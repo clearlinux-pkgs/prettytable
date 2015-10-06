@@ -4,7 +4,7 @@
 #
 Name     : prettytable
 Version  : 0.7.2
-Release  : 14
+Release  : 15
 URL      : https://pypi.python.org/packages/source/P/PrettyTable/prettytable-0.7.2.tar.gz
 Source0  : https://pypi.python.org/packages/source/P/PrettyTable/prettytable-0.7.2.tar.gz
 Summary  : A simple Python library for easily displaying tabular data in a visually appealing ASCII table format
