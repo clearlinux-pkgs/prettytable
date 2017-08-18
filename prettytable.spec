@@ -4,13 +4,15 @@
 #
 Name     : prettytable
 Version  : 0.7.2
-Release  : 24
-URL      : https://pypi.python.org/packages/source/P/PrettyTable/prettytable-0.7.2.tar.gz
-Source0  : https://pypi.python.org/packages/source/P/PrettyTable/prettytable-0.7.2.tar.gz
+Release  : 25
+URL      : http://pypi.debian.net/prettytable/prettytable-0.7.2.tar.gz
+Source0  : http://pypi.debian.net/prettytable/prettytable-0.7.2.tar.gz
 Summary  : A simple Python library for easily displaying tabular data in a visually appealing ASCII table format
 Group    : Development/Tools
 License  : BSD-3-Clause
 Requires: prettytable-python
+BuildRequires : pbr
+BuildRequires : pip
 BuildRequires : python-dev
 BuildRequires : python3-dev
 BuildRequires : setuptools
@@ -35,22 +37,32 @@ python components for the prettytable package.
 %setup -q -n prettytable-0.7.2
 
 %build
-python3 setup.py build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
+export LANG=C
+export SOURCE_DATE_EPOCH=1503073075
+python2 setup.py build -b py2
+python3 setup.py build -b py3
 
 %check
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
-%{__python} setup.py test
+export no_proxy=localhost,127.0.0.1,0.0.0.0
+PYTHONPATH=%{buildroot}/usr/lib/python3.6/site-packages python3 setup.py test
 %install
+export SOURCE_DATE_EPOCH=1503073075
 rm -rf %{buildroot}
-python3 setup.py install --root=%{buildroot}
-python3 setup.py clean
-python setup.py build
-python setup.py install --root=%{buildroot}
+python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
+python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
+echo ----[ mark ]----
+cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
+echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
 
 %files python
 %defattr(-,root,root,-)
-/usr/lib/python*/*
+/usr/lib/python2*/*
+/usr/lib/python3*/*
