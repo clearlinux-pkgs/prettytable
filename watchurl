@@ -1,3 +1,0 @@
-# openstack Liberty needs version >= 0.7 < 0.8
-# for more information check https://github.com/openstack/requirements/blob/master/global-requirements.txt
-watchurl=https://pypi.python.org/packages/source/P/PrettyTable/prettytable-(0.7.[\d\.]*).tar.gz
