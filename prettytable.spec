@@ -4,13 +4,12 @@
 #
 Name     : prettytable
 Version  : 0.7.2
-Release  : 32
+Release  : 33
 URL      : http://pypi.debian.net/prettytable/prettytable-0.7.2.tar.gz
 Source0  : http://pypi.debian.net/prettytable/prettytable-0.7.2.tar.gz
 Summary  : A simple Python library for easily displaying tabular data in a visually appealing ASCII table format
 Group    : Development/Tools
 License  : BSD-3-Clause
-Requires: prettytable-legacypython
 Requires: prettytable-python3
 Requires: prettytable-python
 BuildRequires : pbr
@@ -27,19 +26,9 @@ exhaustive description of the whole API, and it is not guaranteed to be
 100% up to date.  For more complete and update documentation, check the
 PrettyTable wiki at http://code.google.com/p/prettytable/w/list ***
 
-%package legacypython
-Summary: legacypython components for the prettytable package.
-Group: Default
-Requires: python-core
-
-%description legacypython
-legacypython components for the prettytable package.
-
-
 %package python
 Summary: python components for the prettytable package.
 Group: Default
-Requires: prettytable-legacypython
 Requires: prettytable-python3
 
 %description python
@@ -63,8 +52,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1507164395
-python2 setup.py build -b py2
+export SOURCE_DATE_EPOCH=1523047175
 python3 setup.py build -b py3
 
 %check
@@ -73,20 +61,14 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 PYTHONPATH=%{buildroot}/usr/lib/python3.6/site-packages python3 setup.py test
 %install
-export SOURCE_DATE_EPOCH=1507164395
 rm -rf %{buildroot}
-python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
-python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
+python3 -tt setup.py build -b py3 install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
-
-%files legacypython
-%defattr(-,root,root,-)
-/usr/lib/python2*/*
 
 %files python
 %defattr(-,root,root,-)
