@@ -14,7 +14,7 @@ Requires: prettytable-python3
 Requires: prettytable-python
 BuildRequires : pbr
 BuildRequires : pip
-BuildRequires : python-dev
+
 BuildRequires : python3-dev
 BuildRequires : setuptools
 
