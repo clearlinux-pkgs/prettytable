@@ -4,17 +4,17 @@
 #
 Name     : prettytable
 Version  : 0.7.2
-Release  : 38
+Release  : 39
 URL      : http://pypi.debian.net/prettytable/prettytable-0.7.2.tar.gz
 Source0  : http://pypi.debian.net/prettytable/prettytable-0.7.2.tar.gz
 Summary  : A simple Python library for easily displaying tabular data in a visually appealing ASCII table format
 Group    : Development/Tools
 License  : BSD-3-Clause
 Requires: prettytable-python3
+Requires: prettytable-license
 Requires: prettytable-python
 BuildRequires : pbr
 BuildRequires : pip
-
 BuildRequires : python3-dev
 BuildRequires : setuptools
 
@@ -25,6 +25,14 @@ as a "quick start" guide for the lazy or impatient.  It is not an
 exhaustive description of the whole API, and it is not guaranteed to be
 100% up to date.  For more complete and update documentation, check the
 PrettyTable wiki at http://code.google.com/p/prettytable/w/list ***
+
+%package license
+Summary: license components for the prettytable package.
+Group: Default
+
+%description license
+license components for the prettytable package.
+
 
 %package python
 Summary: python components for the prettytable package.
@@ -52,16 +60,18 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1523297950
+export SOURCE_DATE_EPOCH=1530328952
 python3 setup.py build -b py3
 
 %check
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-PYTHONPATH=%{buildroot}/usr/lib/python3.6/site-packages python3 setup.py test
+PYTHONPATH=%{buildroot}/usr/lib/python3.7/site-packages python3 setup.py test
 %install
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/prettytable
+cp COPYING %{buildroot}/usr/share/doc/prettytable/COPYING
 python3 -tt setup.py build -b py3 install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -69,6 +79,10 @@ echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/prettytable/COPYING
 
 %files python
 %defattr(-,root,root,-)
