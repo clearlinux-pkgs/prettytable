@@ -4,19 +4,16 @@
 #
 Name     : prettytable
 Version  : 0.7.2
-Release  : 47
+Release  : 48
 URL      : http://pypi.debian.net/prettytable/prettytable-0.7.2.tar.gz
 Source0  : http://pypi.debian.net/prettytable/prettytable-0.7.2.tar.gz
 Summary  : A simple Python library for easily displaying tabular data in a visually appealing ASCII table format
 Group    : Development/Tools
 License  : BSD-3-Clause
-Requires: prettytable-python3
-Requires: prettytable-license
-Requires: prettytable-python
-BuildRequires : pbr
-BuildRequires : pip
-BuildRequires : python3-dev
-BuildRequires : setuptools
+Requires: prettytable-license = %{version}-%{release}
+Requires: prettytable-python = %{version}-%{release}
+Requires: prettytable-python3 = %{version}-%{release}
+BuildRequires : buildreq-distutils3
 
 %description
 TUTORIAL ON HOW TO USE THE PRETTYTABLE 0.6+ API
@@ -37,7 +34,7 @@ license components for the prettytable package.
 %package python
 Summary: python components for the prettytable package.
 Group: Default
-Requires: prettytable-python3
+Requires: prettytable-python3 = %{version}-%{release}
 
 %description python
 python components for the prettytable package.
@@ -54,25 +51,33 @@ python3 components for the prettytable package.
 
 %prep
 %setup -q -n prettytable-0.7.2
+cd %{_builddir}/prettytable-0.7.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1530328952
-python3 setup.py build -b py3
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1576012895
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
+export MAKEFLAGS=%{?_smp_mflags}
+python3 setup.py build
 
 %check
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-PYTHONPATH=%{buildroot}/usr/lib/python3.7/site-packages python3 setup.py test
+PYTHONPATH=%{buildroot}$(python -c "import sys; print(sys.path[-1])") python setup.py test
 %install
+export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/prettytable
-cp COPYING %{buildroot}/usr/share/doc/prettytable/COPYING
-python3 -tt setup.py build -b py3 install --root=%{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/prettytable
+cp %{_builddir}/prettytable-0.7.2/COPYING %{buildroot}/usr/share/package-licenses/prettytable/13c8cd668dfb0aa6e5485b8b46dd0b29abbb497e
+python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
@@ -81,8 +86,8 @@ echo ----[ mark ]----
 %defattr(-,root,root,-)
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/prettytable/COPYING
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/prettytable/13c8cd668dfb0aa6e5485b8b46dd0b29abbb497e
 
 %files python
 %defattr(-,root,root,-)

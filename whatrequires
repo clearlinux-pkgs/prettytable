@@ -1,3 +1,15 @@
 # This file contains recursive sources that require this package
+barbican
 ceph
+glance
+horizon
 ipython-sql
+ironic
+keystone
+nova
+oslo.upgradecheck
+python-hwinfo
+python-swiftclient
+python-troveclient
+stestr
+tempest
