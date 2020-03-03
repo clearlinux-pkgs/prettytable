@@ -4,10 +4,10 @@
 #
 Name     : prettytable
 Version  : 0.7.2
-Release  : 49
+Release  : 50
 URL      : http://pypi.debian.net/prettytable/prettytable-0.7.2.tar.gz
 Source0  : http://pypi.debian.net/prettytable/prettytable-0.7.2.tar.gz
-Summary  : A simple Python library for easily displaying tabular data in a visually appealing ASCII table format
+Summary  : A simple Python library for easily displaying tabular data in a visually appealing ASCII table format.
 Group    : Development/Tools
 License  : BSD-3-Clause
 Requires: prettytable-license = %{version}-%{release}
@@ -44,6 +44,7 @@ python components for the prettytable package.
 Summary: python3 components for the prettytable package.
 Group: Default
 Requires: python3-core
+Provides: pypi(PrettyTable)
 
 %description python3
 python3 components for the prettytable package.
@@ -58,7 +59,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1576012895
+export SOURCE_DATE_EPOCH=1583203153
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "

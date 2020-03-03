@@ -11,5 +11,4 @@ oslo.upgradecheck
 python-hwinfo
 python-swiftclient
 python-troveclient
-stestr
 tempest
