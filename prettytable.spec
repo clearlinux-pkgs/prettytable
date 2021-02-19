@@ -4,7 +4,7 @@
 #
 Name     : prettytable
 Version  : 0.7.2
-Release  : 57
+Release  : 58
 URL      : http://pypi.debian.net/prettytable/prettytable-0.7.2.tar.gz
 Source0  : http://pypi.debian.net/prettytable/prettytable-0.7.2.tar.gz
 Summary  : A simple Python library for easily displaying tabular data in a visually appealing ASCII table format
