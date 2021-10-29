@@ -4,7 +4,7 @@
 #
 Name     : prettytable
 Version  : 2.2.1
-Release  : 67
+Release  : 68
 URL      : https://files.pythonhosted.org/packages/81/ba/ead3c121d6e59ea4e31bba0976b28ff0369210c66901e84fad20878299e2/prettytable-2.2.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/81/ba/ead3c121d6e59ea4e31bba0976b28ff0369210c66901e84fad20878299e2/prettytable-2.2.1.tar.gz
 Summary  : A simple Python library for easily displaying tabular data in a visually appealing ASCII table format
