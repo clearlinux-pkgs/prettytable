@@ -1,5 +1,5 @@
 PKG_NAME := prettytable
-URL = https://files.pythonhosted.org/packages/81/ba/ead3c121d6e59ea4e31bba0976b28ff0369210c66901e84fad20878299e2/prettytable-2.2.1.tar.gz
+URL = https://files.pythonhosted.org/packages/ea/36/a96f1d0f434e1658b3fde011df028efdc3d38bde563339f0fc9e8beadc59/prettytable-2.4.0.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
